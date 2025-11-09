@@ -1,0 +1,45 @@
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Warcraft Library.exe.config
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Warcraft Library.exe
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Warcraft Library.pdb
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.csproj.AssemblyReference.cache
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form1.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Properties.Resources.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.csproj.GenerateResource.cache
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.exe
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.pdb
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft Library.exe.config
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\DnsClient.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\MongoDB.Bson.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\MongoDB.Driver.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\SharpCompress.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Snappier.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Buffers.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Memory.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\ZstdSharp.dll
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\DnsClient.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\MongoDB.Bson.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\MongoDB.Driver.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\Snappier.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Buffers.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Memory.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Text.Encoding.CodePages.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft.97C1D6FE.Up2Date
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form2.resources
