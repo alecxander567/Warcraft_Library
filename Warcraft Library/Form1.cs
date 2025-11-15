@@ -172,6 +172,11 @@ namespace Warcraft_Library
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+
+                Form3 home = new Form3(username);
+                home.Show();
+
+                this.Hide();
             }
             else
             {
