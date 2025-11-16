@@ -44,3 +44,4 @@ C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\bin\Debug\System.
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft.97C1D6FE.Up2Date
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form2.resources
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form3.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form4.resources

@@ -1,6 +1,10 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Warcraft_Library
@@ -51,7 +55,7 @@ namespace Warcraft_Library
             this.picProfile.Size = new System.Drawing.Size(100, 100);
             this.picProfile.Location = new System.Drawing.Point(60, 60);
             this.picProfile.SizeMode = PictureBoxSizeMode.Zoom;
-            this.picProfile.BackColor = Color.FromArgb(45, 45, 45); 
+            this.picProfile.BackColor = Color.FromArgb(45, 45, 45);
             this.picProfile.Click += PicProfile_Click;
             this.picProfile.Cursor = Cursors.Hand;
 
@@ -69,7 +73,7 @@ namespace Warcraft_Library
             };
 
             int startX = 20;
-            int startY = 180; 
+            int startY = 180;
             int spacing = 55;
 
             this.btnHeroes = MakeMenuButton("Heroes", startX, startY);
@@ -101,7 +105,6 @@ namespace Warcraft_Library
 
             this.mainContent.Dock = DockStyle.Fill;
             this.mainContent.BackColor = System.Drawing.Color.FromArgb(54, 57, 63);
-
             this.Controls.Add(this.mainContent);
             this.Controls.Add(this.sidebar);
 
