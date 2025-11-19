@@ -78,6 +78,7 @@ namespace Warcraft_Library
         private async Task LoadHeroesAsync()
         {
             mainContent.Controls.Clear();
+            mainContent.AutoScroll = true;
 
             Button btnAddHero = new Button
             {
@@ -124,9 +125,17 @@ namespace Warcraft_Library
                 }
 
                 int x = 20, y = 80;
-                int cardWidth = 250, cardHeight = 350, spacing = 20;
+                int cardWidth = 250;
+                int cardHeight = 420;
+                int spacing = 20; 
+                int leftPadding = 10;
                 int cardsPerRow = 4;
                 int counter = 0;
+
+                int totalCardWidth = cardsPerRow * cardWidth + (cardsPerRow - 1) * spacing;
+                int extraSpace = mainContent.Width - totalCardWidth;
+                int startX = leftPadding + extraSpace / 2; 
+                x = startX; 
 
                 foreach (var hero in heroes)
                 {
@@ -180,23 +189,113 @@ namespace Warcraft_Library
                         Multiline = true,
                         ReadOnly = true,
                         ScrollBars = ScrollBars.Vertical,
-                        Size = new Size(cardWidth - 20, 100),
+                        Size = new Size(cardWidth - 20, 130), 
                         Location = new Point(10, 230),
                         BorderStyle = BorderStyle.None
+                    };
+
+                    Button btnView = new Button
+                    {
+                        Text = "View",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 210, 370), 
+                        BackColor = Color.FromArgb(100, 100, 200),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat
+                    };
+
+                    btnView.Click += (s, e) =>
+                    {
+                        FormViewHero viewForm = new FormViewHero(hero);
+                        viewForm.ShowDialog();
+                    };
+
+                    Button btnEdit = new Button
+                    {
+                        Text = "Edit",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 140, 370), 
+                        BackColor = Color.FromArgb(0, 122, 204),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat
+                    };
+
+                    btnEdit.Click += async (s, e) =>
+                    {
+                        try
+                        {
+                            var heroId = hero.GetValue("_id").AsObjectId;
+
+                            Form4 editForm = new Form4(currentUsername, heroId); 
+                            editForm.ShowDialog();
+
+                            await LoadHeroesAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to open hero for editing: " + ex.Message);
+                            Debug.WriteLine($"Exception: {ex}");
+                        }
+                    };
+
+                    Button btnDelete = new Button
+                    {
+                        Text = "Delete",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 70, 370),
+                        BackColor = Color.FromArgb(200, 50, 50),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat
+                    };
+
+                    var currentHero = hero;
+
+                    btnDelete.Click += async (s, e) =>
+                    {
+                        try
+                        {
+                            var result = MessageBox.Show(
+                                $"Are you sure you want to delete {currentHero.GetValue("Name", "").AsString}?",
+                                "Confirm Delete",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning
+                            );
+
+                            if (result == DialogResult.Yes)
+                            {
+                                var heroId = currentHero.GetValue("_id").AsObjectId;
+                                var filterDel = Builders<BsonDocument>.Filter.Eq("_id", heroId);
+                                await collection.DeleteOneAsync(filterDel);
+
+                                MessageBox.Show("Hero deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                await LoadHeroesAsync();
+                            }
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to delete hero: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Debug.WriteLine($"Exception: {ex}");
+                        }
                     };
 
                     card.Controls.Add(pic);
                     card.Controls.Add(lblName);
                     card.Controls.Add(lblRace);
                     card.Controls.Add(txtBio);
+                    card.Controls.Add(btnView);
+                    card.Controls.Add(btnEdit);
+                    card.Controls.Add(btnDelete);
 
                     mainContent.Controls.Add(card);
 
                     counter++;
                     x += cardWidth + spacing;
-                    if (counter % cardsPerRow == 0)
+
+                     if (counter % cardsPerRow == 0)
                     {
-                        x = 20;
+                        x = startX; 
                         y += cardHeight + spacing;
                     }
                 }

@@ -18,11 +18,19 @@ namespace Warcraft_Library
         private PictureBox picHero;
         private string imageFilePath = null;
         private string currentUsername;
+        private ObjectId? editingHeroId = null;
 
         public Form4(string username)
         {
             currentUsername = username;
             BuildForm();
+        }
+
+        public Form4(string username, ObjectId heroId) : this(username) 
+        {
+            editingHeroId = heroId;
+            this.Text = "Edit Hero";
+            LoadHeroData(heroId);
         }
 
         private void BuildForm()
@@ -233,23 +241,70 @@ namespace Warcraft_Library
                 if (!string.IsNullOrEmpty(imageFilePath))
                     imageBytes = File.ReadAllBytes(imageFilePath);
 
-                var newHero = new BsonDocument
+                if (editingHeroId.HasValue) 
                 {
-                    { "Username", currentUsername },
-                    { "Name", txtName.Text },
-                    { "Race", cbRace.SelectedItem.ToString() },
-                    { "Biography", txtBio.Text },
-                    { "Image", imageBytes ?? new byte[0] }
-                };
-                await collection.InsertOneAsync(newHero);
+                    var update = Builders<BsonDocument>.Update
+                        .Set("Name", txtName.Text)
+                        .Set("Race", cbRace.SelectedItem.ToString())
+                        .Set("Biography", txtBio.Text);
 
+                    if (imageBytes != null)
+                        update = update.Set("Image", imageBytes);
 
-                MessageBox.Show("Hero added successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", editingHeroId.Value);
+                    await collection.UpdateOneAsync(filter, update);
+
+                    MessageBox.Show("Hero updated successfully!", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else 
+                {
+                    var newHero = new BsonDocument
+            {
+                { "Username", currentUsername },
+                { "Name", txtName.Text },
+                { "Race", cbRace.SelectedItem.ToString() },
+                { "Biography", txtBio.Text },
+                { "Image", imageBytes ?? new byte[0] }
+            };
+                    await collection.InsertOneAsync(newHero);
+                    MessageBox.Show("Hero added successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving hero: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void LoadHeroData(ObjectId heroId)
+        {
+            try
+            {
+                var client = new MongoClient("mongodb://localhost:27017");
+                var db = client.GetDatabase("Warcraft_LibraryDB");
+                var collection = db.GetCollection<BsonDocument>("Heroes");
+
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", heroId);
+                var hero = await collection.Find(filter).FirstOrDefaultAsync();
+
+                if (hero != null)
+                {
+                    txtName.Text = hero.GetValue("Name", "").AsString;
+                    txtBio.Text = hero.GetValue("Biography", "").AsString;
+                    cbRace.SelectedItem = hero.GetValue("Race", "").AsString;
+
+                    if (hero.Contains("Image") && hero["Image"].IsBsonBinaryData && hero["Image"].AsBsonBinaryData.Bytes.Length > 0)
+                    {
+                        using (MemoryStream ms = new MemoryStream(hero["Image"].AsByteArray))
+                            picHero.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load hero data: " + ex.Message);
             }
         }
     }

@@ -39,7 +39,7 @@ namespace Warcraft_Library
             this.mainContent = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
 
-            this.ClientSize = new System.Drawing.Size(1300, 600);
+            this.ClientSize = new System.Drawing.Size(1350, 600);
 
             this.sidebar.BackColor = System.Drawing.Color.FromArgb(32, 34, 37);
             this.sidebar.Dock = DockStyle.Left;
