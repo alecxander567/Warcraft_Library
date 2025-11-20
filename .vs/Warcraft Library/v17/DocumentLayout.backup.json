@@ -3,35 +3,67 @@
   "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form5.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form3.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form3.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form7.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form7.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|c:\\users\\lenovo\\source\\repos\\warcraft library\\warcraft library\\form6.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form6.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form5.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form5.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form3.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form3.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -41,14 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|solutionrelative:warcraft library\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7C620117-F4A2-4730-B26F-CD189F072DC0}|Warcraft Library\\Warcraft Library.csproj|C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\warcraft library\\form4.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,29 +90,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Form2.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form2.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form2.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form2.cs",
               "RelativeToolTip": "Warcraft Library\\Form2.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAgwAkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAgwAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-09T08:20:34.285Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form7.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form7.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.cs",
+              "RelativeToolTip": "Warcraft Library\\Form7.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T06:02:03.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form7.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form7.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.cs [Design]",
+              "RelativeToolTip": "Warcraft Library\\Form7.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T06:02:01.486Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Form6.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form6.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.cs",
+              "RelativeToolTip": "Warcraft Library\\Form6.cs",
+              "ViewState": "AgIAAPUAAAAAAAAAAAAswAEBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T05:31:13.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Form6.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form6.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.cs [Design]",
+              "RelativeToolTip": "Warcraft Library\\Form6.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T05:31:11.267Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Form5.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.Designer.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form5.Designer.cs",
@@ -101,45 +171,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Form5.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form5.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs*",
-              "RelativeToolTip": "Warcraft Library\\Form5.cs*",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAkwGQAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs",
+              "RelativeToolTip": "Warcraft Library\\Form5.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAwwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-19T05:13:58.151Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Form5.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form5.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs [Design]*",
-              "RelativeToolTip": "Warcraft Library\\Form5.cs [Design]*",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form5.cs [Design]",
+              "RelativeToolTip": "Warcraft Library\\Form5.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-19T05:13:55.861Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "Form3.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form3.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.cs",
+              "RelativeToolTip": "Warcraft Library\\Form3.cs",
+              "ViewState": "AgIAABMCAAAAAAAAAAAwwCcCAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T00:14:18.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form7.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.Designer.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form7.Designer.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form7.Designer.cs",
+              "RelativeToolTip": "Warcraft Library\\Form7.Designer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwCYAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T06:02:18.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Form4.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form4.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form4.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form4.cs",
               "RelativeToolTip": "Warcraft Library\\Form4.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABgBAAAAAAAAAAA/wCMBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-16T07:05:26.867Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Form4.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form4.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form4.cs",
@@ -151,20 +247,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
+              "Title": "Form6.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.Designer.cs",
+              "RelativeDocumentMoniker": "Warcraft Library\\Form6.Designer.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form6.Designer.cs",
+              "RelativeToolTip": "Warcraft Library\\Form6.Designer.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwCYAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T05:31:39.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Form3.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.Designer.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form3.Designer.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.Designer.cs",
               "RelativeToolTip": "Warcraft Library\\Form3.Designer.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAYwCoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAowCkAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-15T00:19:35.34Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form1.Designer.cs",
@@ -172,24 +281,12 @@
               "RelativeToolTip": "Warcraft Library\\Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T00:19:26.703Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form3.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.cs",
-              "RelativeDocumentMoniker": "Warcraft Library\\Form3.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.cs",
-              "RelativeToolTip": "Warcraft Library\\Form3.cs",
-              "ViewState": "AgIAABwBAAAAAAAAAAAAACkBAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T00:14:18.379Z",
+              "WhenOpened": "2025-11-15T00:19:26.703Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "Form3.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form3.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form3.cs",
@@ -201,19 +298,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "Form2.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form2.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form2.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form2.cs [Design]",
               "RelativeToolTip": "Warcraft Library\\Form2.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T08:20:32.184Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-09T08:20:32.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form1.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form1.cs",
@@ -221,12 +317,11 @@
               "RelativeToolTip": "Warcraft Library\\Form1.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAgwLsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T07:50:26.004Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T07:50:26.004Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Form4.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form4.Designer.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form4.Designer.cs",
@@ -239,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Warcraft Library\\Warcraft Library\\Form1.cs",
               "RelativeDocumentMoniker": "Warcraft Library\\Form1.cs",

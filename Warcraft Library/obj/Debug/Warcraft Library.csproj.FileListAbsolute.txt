@@ -46,3 +46,6 @@ C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraf
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form3.resources
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.Form4.resources
 C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.FormViewHero.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.FormAddItem.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.UserControl1.resources
+C:\Users\Lenovo\source\repos\Warcraft Library\Warcraft Library\obj\Debug\Warcraft_Library.FormViewItem.resources

@@ -6,17 +6,17 @@ using MongoDB.Bson;
 
 namespace Warcraft_Library
 {
-    public partial class FormViewHero : Form
+    public partial class FormViewItem : Form
     {
-        public FormViewHero(BsonDocument hero)
+        public FormViewItem(BsonDocument item)
         {
             InitializeComponent();
-            InitializeHeroView(hero);
+            InitializeItemView(item);
         }
 
-        private void InitializeHeroView(BsonDocument hero)
+        private void InitializeItemView(BsonDocument item)
         {
-            this.Text = hero.GetValue("Name", "").AsString;
+            this.Text = item.GetValue("Name", "").AsString;
             this.ClientSize = new Size(520, 650);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterParent;
@@ -29,26 +29,26 @@ namespace Warcraft_Library
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BorderStyle = BorderStyle.FixedSingle
             };
-            if (hero.Contains("Image") && hero["Image"].IsBsonBinaryData)
+            if (item.Contains("Image") && item["Image"].IsBsonBinaryData)
             {
-                byte[] imgBytes = hero["Image"].AsByteArray;
+                byte[] imgBytes = item["Image"].AsByteArray;
                 using (MemoryStream ms = new MemoryStream(imgBytes))
                     pic.Image = Image.FromStream(ms);
             }
 
             Label lblName = new Label
             {
-                Text = hero.GetValue("Name", "").AsString,
-                Font = new Font("Goudy Stout", 16, FontStyle.Bold), 
+                Text = item.GetValue("Name", "").AsString,
+                Font = new Font("Papyrus", 16, FontStyle.Bold),
                 ForeColor = Color.Gold,
                 Size = new Size(400, 40),
                 Location = new Point(60, 280),
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
-            Label lblRace = new Label
+            Label lblOwner = new Label
             {
-                Text = hero.GetValue("Race", "").AsString,
+                Text = "Owner: " + item.GetValue("Owner", "").AsString,
                 Font = new Font("Segoe UI", 13, FontStyle.Italic),
                 ForeColor = Color.LightGray,
                 Size = new Size(400, 25),
@@ -56,11 +56,26 @@ namespace Warcraft_Library
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
-            TextBox txtBio = new TextBox
+            TextBox txtAbilities = new TextBox
             {
-                Text = hero.GetValue("Biography", "").AsString,
+                Text = item.GetValue("Abilities", "").AsString,
                 Location = new Point(60, 370),
-                Size = new Size(400, 230),
+                Size = new Size(400, 80),
+                Multiline = true,
+                ReadOnly = true,
+                ScrollBars = ScrollBars.Vertical,
+                Font = new Font("Segoe UI", 12, FontStyle.Italic),
+                BackColor = Color.FromArgb(60, 60, 70), 
+                ForeColor = Color.LightGreen,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            txtAbilities.TabStop = false;
+
+            TextBox txtDesc = new TextBox
+            {
+                Text = item.GetValue("Description", "").AsString,
+                Location = new Point(60, 460),
+                Size = new Size(400, 140),
                 Multiline = true,
                 ReadOnly = true,
                 ScrollBars = ScrollBars.Vertical,
@@ -69,27 +84,19 @@ namespace Warcraft_Library
                 ForeColor = Color.White,
                 BorderStyle = BorderStyle.None
             };
+            txtDesc.TabStop = false;
 
-            txtBio.TabStop = false;
-
-            Panel borderPanel = new Panel
-            {
-                Size = new Size(460, 590),
-                Location = new Point(30, 15),
-                BorderStyle = BorderStyle.FixedSingle,
-                BackColor = Color.FromArgb(50, 45, 45)
-            };
-
-            this.Controls.Add(borderPanel);
             this.Controls.Add(pic);
             this.Controls.Add(lblName);
-            this.Controls.Add(lblRace);
-            this.Controls.Add(txtBio);
+            this.Controls.Add(lblOwner);
+            this.Controls.Add(txtAbilities);
+            this.Controls.Add(txtDesc);
 
             pic.BringToFront();
             lblName.BringToFront();
-            lblRace.BringToFront();
-            txtBio.BringToFront();
+            lblOwner.BringToFront();
+            txtAbilities.BringToFront();
+            txtDesc.BringToFront();
         }
     }
 }

@@ -307,11 +307,263 @@ namespace Warcraft_Library
             }
         }
 
-        private void LoadItems()
+        private async void LoadItems()
         {
             mainContent.Controls.Clear();
-            Label lbl = new Label { Text = "Items view - Coming soon!", ForeColor = Color.White, Location = new Point(50, 50), AutoSize = true };
-            mainContent.Controls.Add(lbl);
+
+            Button btnAddItem = new Button
+            {
+                Text = "+ Add Item",
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(0, 122, 204),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Size = new Size(140, 40),
+                Location = new Point(mainContent.Width - 160, 20),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            btnAddItem.Click += (s, e) =>
+            {
+                FormAddItem addItemForm = new FormAddItem();
+                if (addItemForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadItems();
+                }
+            };
+            mainContent.Controls.Add(btnAddItem);
+
+            try
+            {
+                var client = new MongoClient("mongodb://localhost:27017");
+                var db = client.GetDatabase("Warcraft_LibraryDB");
+                var collection = db.GetCollection<BsonDocument>("Items");
+
+                var items = await collection.Find(new BsonDocument()).ToListAsync();
+
+                int x = 20, y = 80;
+                int cardWidth = 300, cardHeight = 300;
+                int spacing = 20;
+                int cardsPerRow = Math.Max(1, (mainContent.Width - spacing) / (cardWidth + spacing));
+                int count = 0;
+
+                int btnWidth = 80, btnHeight = 30, btnSpacing = 10;
+                int btnY = cardHeight - btnHeight - 10;
+                int startX = 10; 
+
+                foreach (var item in items)
+                {
+                    Panel card = new Panel
+                    {
+                        Size = new Size(cardWidth, cardHeight),
+                        Location = new Point(x, y),
+                        BackColor = Color.FromArgb(35, 35, 45),
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
+
+                    PictureBox pic = new PictureBox
+                    {
+                        Size = new Size(100, 100),
+                        Location = new Point(10, 10),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        BackColor = Color.FromArgb(60, 60, 70)
+                    };
+                    if (item.Contains("Image") && item["Image"].AsByteArray.Length > 0)
+                    {
+                        using (var ms = new MemoryStream(item["Image"].AsByteArray))
+                        {
+                            pic.Image = Image.FromStream(ms);
+                        }
+                    }
+                    card.Controls.Add(pic);
+
+                    Label lblName = new Label
+                    {
+                        Text = item.Contains("Name") ? item["Name"].AsString : "Unknown",
+                        ForeColor = Color.Gold,
+                        Font = new Font("Papyrus", 12, FontStyle.Bold),
+                        Location = new Point(120, 10),
+                        AutoSize = false,
+                        Width = cardWidth - 130,
+                        Height = 25
+                    };
+                    card.Controls.Add(lblName);
+
+                    Label lblOwner = new Label
+                    {
+                        Text = "Owner: " + (item.Contains("Owner") ? item["Owner"].AsString : "-"),
+                        ForeColor = Color.LightGray,
+                        Font = new Font("Segoe UI", 10, FontStyle.Regular),
+                        Location = new Point(120, 40),
+                        AutoSize = false,
+                        Width = cardWidth - 130,
+                        Height = 20
+                    };
+                    card.Controls.Add(lblOwner);
+
+                    Label lblAbilities = new Label
+                    {
+                        Text = "Abilities: " + (item.Contains("Abilities") ? item["Abilities"].AsString : "-"),
+                        ForeColor = Color.LightGreen,
+                        Font = new Font("Segoe UI", 10, FontStyle.Italic),
+                        Location = new Point(10, 120),
+                        AutoSize = false,
+                        Width = cardWidth - 20,
+                        Height = 40
+                    };
+                    card.Controls.Add(lblAbilities);
+
+                    TextBox txtDesc = new TextBox
+                    {
+                        Text = item.Contains("Description") ? item["Description"].AsString : "-",
+                        ForeColor = Color.White,
+                        BackColor = Color.FromArgb(50, 50, 60),
+                        Font = new Font("Segoe UI", 9),
+                        Location = new Point(10, 170),
+                        Width = cardWidth - 20,
+                        Height = 70,
+                        Multiline = true,
+                        ReadOnly = true,
+                        BorderStyle = BorderStyle.None,
+                        ScrollBars = ScrollBars.Vertical
+                    };
+                    card.Controls.Add(txtDesc);
+
+                    Button btnView = new Button
+                    {
+                        Text = "View",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 210, cardHeight - 40), 
+                        BackColor = Color.FromArgb(100, 100, 200),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Cursor = Cursors.Hand
+                    };
+
+                    btnView.Click += (s, e) =>
+                    {
+                        FormViewItem viewForm = new FormViewItem(item);
+                        viewForm.ShowDialog();
+                    };
+
+                    card.Controls.Add(btnView);
+
+                    Button btnEdit = new Button
+                    {
+                        Text = "Edit",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 140, cardHeight - 40),
+                        BackColor = Color.FromArgb(0, 122, 204),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Cursor = Cursors.Hand
+                    };
+
+                    btnEdit.Click += async (s, e) =>
+                    {
+                        try
+                        {
+                            FormAddItem editForm = new FormAddItem();
+
+                            editForm.SetItemData(item); 
+
+                            if (editForm.ShowDialog() == DialogResult.OK)
+                            {
+                               client = new MongoClient("mongodb://localhost:27017");
+                               db = client.GetDatabase("Warcraft_LibraryDB");
+                               collection = db.GetCollection<BsonDocument>("Items");
+
+                                var filter = Builders<BsonDocument>.Filter.Eq("_id", item["_id"].AsObjectId);
+
+                                var updatedDoc = new BsonDocument
+                                {
+                                    { "Name", editForm.ItemName },
+                                    { "Owner", editForm.ItemOwner },
+                                    { "Abilities", editForm.ItemAbilities },
+                                    { "Description", editForm.ItemDescription },
+                                    { "Image", editForm.ItemImageBytes ?? new byte[0] }
+                                };
+
+                                await collection.ReplaceOneAsync(filter, updatedDoc);
+
+                                LoadItems();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to edit item: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    };
+
+                    card.Controls.Add(btnEdit);
+
+                    Button btnDelete = new Button
+                    {
+                        Text = "Delete",
+                        Size = new Size(60, 30),
+                        Location = new Point(cardWidth - 70, cardHeight - 40),
+                        BackColor = Color.FromArgb(200, 50, 50),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Cursor = Cursors.Hand
+                    };
+
+                    var currentItem = item;
+
+                    btnDelete.Click += async (s, e) =>
+                    {
+                        try
+                        {
+                            var result = MessageBox.Show(
+                                $"Are you sure you want to delete {currentItem.GetValue("Name", "").AsString}?",
+                                "Confirm Delete",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning
+                            );
+
+                            if (result == DialogResult.Yes)
+                            {
+                                client = new MongoClient("mongodb://localhost:27017");
+                                db = client.GetDatabase("Warcraft_LibraryDB");
+                                collection = db.GetCollection<BsonDocument>("Items");
+
+                                var itemId = currentItem.GetValue("_id").AsObjectId;
+                                var filter = Builders<BsonDocument>.Filter.Eq("_id", itemId);
+
+                                await collection.DeleteOneAsync(filter);
+
+                                MessageBox.Show("Item deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                LoadItems();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to delete item: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine($"Exception: {ex}");
+                        }
+                    };
+
+                    card.Controls.Add(btnDelete);
+
+                    mainContent.Controls.Add(card);
+
+                    count++;
+                    if (count % cardsPerRow == 0)
+                    {
+                        x = 20;
+                        y += cardHeight + spacing;
+                    }
+                    else
+                    {
+                        x += cardWidth + spacing;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadMyCharacter()
