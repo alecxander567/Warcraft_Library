@@ -14,7 +14,8 @@ namespace Warcraft_Library
         private Button btnSave, btnCancel, btnUploadImage;
         private Panel mainPanel;
         private byte[] selectedImageBytes = null;
-        private ObjectId? currentItemId = null; 
+        private ObjectId? currentItemId = null;
+        private string currentUsername;
 
         public string ItemName => txtName.Text;
         public string ItemOwner => txtOwner.Text;
@@ -22,9 +23,10 @@ namespace Warcraft_Library
         public string ItemDescription => txtDesc.Text;
         public byte[] ItemImageBytes => selectedImageBytes;
 
-        public FormAddItem()
+        public FormAddItem(string currentUsername)
         {
             BuildForm();
+            this.currentUsername = currentUsername;
         }
 
         private void BuildForm()
@@ -219,11 +221,13 @@ namespace Warcraft_Library
                 var doc = new BsonDocument
                 {
                     { "Name", txtName.Text },
-                    { "Owner", txtOwner.Text },
+                    { "Owner", txtOwner.Text },       
+                    { "Uploader", currentUsername },  
                     { "Abilities", txtAbilities.Text },
                     { "Description", txtDesc.Text },
                     { "Image", selectedImageBytes ?? new byte[0] }
                 };
+
 
                 if (currentItemId.HasValue)
                 {

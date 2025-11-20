@@ -325,7 +325,7 @@ namespace Warcraft_Library
 
             btnAddItem.Click += (s, e) =>
             {
-                FormAddItem addItemForm = new FormAddItem();
+                FormAddItem addItemForm = new FormAddItem(currentUsername);
                 if (addItemForm.ShowDialog() == DialogResult.OK)
                 {
                     LoadItems();
@@ -334,12 +334,13 @@ namespace Warcraft_Library
             mainContent.Controls.Add(btnAddItem);
 
             try
-            {
+                {
                 var client = new MongoClient("mongodb://localhost:27017");
                 var db = client.GetDatabase("Warcraft_LibraryDB");
                 var collection = db.GetCollection<BsonDocument>("Items");
 
-                var items = await collection.Find(new BsonDocument()).ToListAsync();
+                var filter = Builders<BsonDocument>.Filter.Eq("Uploader", currentUsername);
+                var items = await collection.Find(filter).ToListAsync();
 
                 int x = 20, y = 80;
                 int cardWidth = 300, cardHeight = 300;
@@ -459,11 +460,14 @@ namespace Warcraft_Library
                         Cursor = Cursors.Hand
                     };
 
+
+                    var currentItem = item;
+
                     btnEdit.Click += async (s, e) =>
                     {
                         try
                         {
-                            FormAddItem editForm = new FormAddItem();
+                            FormAddItem editForm = new FormAddItem(currentUsername);
 
                             editForm.SetItemData(item); 
 
@@ -473,18 +477,18 @@ namespace Warcraft_Library
                                db = client.GetDatabase("Warcraft_LibraryDB");
                                collection = db.GetCollection<BsonDocument>("Items");
 
-                                var filter = Builders<BsonDocument>.Filter.Eq("_id", item["_id"].AsObjectId);
-
                                 var updatedDoc = new BsonDocument
                                 {
                                     { "Name", editForm.ItemName },
                                     { "Owner", editForm.ItemOwner },
                                     { "Abilities", editForm.ItemAbilities },
                                     { "Description", editForm.ItemDescription },
-                                    { "Image", editForm.ItemImageBytes ?? new byte[0] }
+                                    { "Image", editForm.ItemImageBytes ?? new byte[0] },
+                                    { "Uploader", currentUsername } 
                                 };
 
-                                await collection.ReplaceOneAsync(filter, updatedDoc);
+                                var editFilter = Builders<BsonDocument>.Filter.Eq("_id", currentItem.GetValue("_id").AsObjectId);
+                                await collection.ReplaceOneAsync(editFilter, updatedDoc);
 
                                 LoadItems();
                             }
@@ -508,8 +512,6 @@ namespace Warcraft_Library
                         Cursor = Cursors.Hand
                     };
 
-                    var currentItem = item;
-
                     btnDelete.Click += async (s, e) =>
                     {
                         try
@@ -528,9 +530,9 @@ namespace Warcraft_Library
                                 collection = db.GetCollection<BsonDocument>("Items");
 
                                 var itemId = currentItem.GetValue("_id").AsObjectId;
-                                var filter = Builders<BsonDocument>.Filter.Eq("_id", itemId);
 
-                                await collection.DeleteOneAsync(filter);
+                                var deleteFilter = Builders<BsonDocument>.Filter.Eq("_id", currentItem.GetValue("_id").AsObjectId);
+                                await collection.DeleteOneAsync(deleteFilter);
 
                                 MessageBox.Show("Item deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -558,6 +560,20 @@ namespace Warcraft_Library
                     {
                         x += cardWidth + spacing;
                     }
+                }
+
+                if (items.Count == 0)
+                {
+                    Label noItems = new Label
+                    {
+                        Text = "No items found. Click '+ Add Items' to create one!",
+                        ForeColor = Color.Gray,
+                        Font = new Font("Segoe UI", 14),
+                        Location = new Point(mainContent.Width / 2 - 200, mainContent.Height / 2),
+                        AutoSize = true
+                    };
+                    mainContent.Controls.Add(noItems);
+                    return;
                 }
             }
             catch (Exception ex)
