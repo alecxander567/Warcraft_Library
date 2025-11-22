@@ -460,7 +460,6 @@ namespace Warcraft_Library
                         Cursor = Cursors.Hand
                     };
 
-
                     var currentItem = item;
 
                     btnEdit.Click += async (s, e) =>
@@ -585,8 +584,585 @@ namespace Warcraft_Library
         private void LoadMyCharacter()
         {
             mainContent.Controls.Clear();
-            Label lbl = new Label { Text = "My Character view - Coming soon!", ForeColor = Color.White, Location = new Point(50, 50), AutoSize = true };
-            mainContent.Controls.Add(lbl);
+
+            Panel container = new Panel
+            {
+                BackColor = Color.FromArgb(28, 28, 33),
+                Location = new Point(20, 20),
+                Size = new Size(mainContent.Width - 40, mainContent.Height - 40),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            mainContent.Controls.Add(container);
+
+            Label title = new Label
+            {
+                Text = "⚔ Create Your Hero ⚔",
+                ForeColor = Color.Gold,
+                Font = new Font("Palatino Linotype", 22, FontStyle.Bold),
+                AutoSize = true,
+                Location = new Point(30, 20)
+            };
+            container.Controls.Add(title);
+
+            int startX = 30;
+            int startY = 100;
+
+            Func<string, Label> MakeLabel = (text) =>
+            {
+                return new Label
+                {
+                    Text = text,
+                    ForeColor = Color.FromArgb(220, 200, 160),
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true
+                };
+            };
+
+            Panel imageFrame = new Panel
+            {
+                Location = new Point(startX, startY),
+                Size = new Size(180, 220),
+                BackColor = Color.FromArgb(22, 22, 28),
+                BorderStyle = BorderStyle.Fixed3D
+            };
+            container.Controls.Add(imageFrame);
+
+            Label lblImage = MakeLabel("Hero Image:");
+            lblImage.Location = new Point(startX, startY - 30);
+            container.Controls.Add(lblImage);
+
+            PictureBox picHero = new PictureBox
+            {
+                Name = "picHeroImage",
+                Location = new Point(15, 15),
+                Size = new Size(150, 150),
+                BorderStyle = BorderStyle.FixedSingle,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.FromArgb(35, 35, 45)
+            };
+            imageFrame.Controls.Add(picHero);
+
+            Button btnUpload = new Button
+            {
+                Text = "Upload",
+                BackColor = Color.FromArgb(0, 90, 180),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 150,
+                Height = 35,
+                Location = new Point(15, 170),
+                Font = new Font("Segoe UI", 9, FontStyle.Bold)
+            };
+            btnUpload.FlatAppearance.BorderSize = 0;
+
+            btnUpload.Click += (sender, e) =>
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif";
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        picHero.Image = Image.FromFile(ofd.FileName);
+                    }
+                }
+            };
+            imageFrame.Controls.Add(btnUpload);
+
+            int textStartX = startX + 220;
+            int textStartY = startY;
+
+            Label lblName = MakeLabel("Hero Name:");
+            lblName.Location = new Point(textStartX, textStartY);
+            container.Controls.Add(lblName);
+
+            TextBox txtName = new TextBox
+            {
+                Name = "txtHeroName",
+                Location = new Point(textStartX + 150, textStartY - 3),
+                Width = 250,
+                BackColor = Color.FromArgb(40, 40, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            container.Controls.Add(txtName);
+
+            textStartY += 40;
+
+            Label lblRace = MakeLabel("Race:");
+            lblRace.Location = new Point(textStartX, textStartY);
+            container.Controls.Add(lblRace);
+
+            ComboBox cbRace = new ComboBox
+            {
+                Name = "cbRace",
+                Location = new Point(textStartX + 150, textStartY - 3),
+                Width = 250,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                BackColor = Color.FromArgb(40, 40, 50),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat
+            };
+
+            cbRace.Items.AddRange(new string[]
+            {
+                "Human", "Orc", "Night Elf", "Undead",
+                "Dwarf", "Pandaren", "Troll", "Gnome", "Tauren",
+                "Draenei", "Blood Elf", "Worgen", "Goblin"
+            });
+            container.Controls.Add(cbRace);
+
+            textStartY += 40;
+
+            Label lblAbilities = MakeLabel("Abilities:");
+            lblAbilities.Location = new Point(textStartX, textStartY);
+            container.Controls.Add(lblAbilities);
+
+            TextBox txtAbilities = new TextBox
+            {
+                Name = "txtAbilities",
+                Location = new Point(textStartX + 120, textStartY),
+                Width = 350,
+                Height = 90,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+                BackColor = Color.FromArgb(40, 40, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            container.Controls.Add(txtAbilities);
+
+            textStartY += 110;
+
+            Label lblBio = MakeLabel("Biography:");
+            lblBio.Location = new Point(textStartX, textStartY);
+            container.Controls.Add(lblBio);
+
+            TextBox txtBio = new TextBox
+            {
+                Name = "txtBiography",
+                Location = new Point(textStartX + 120, textStartY),
+                Width = 350,
+                Height = 130,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+                BackColor = Color.FromArgb(40, 40, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            container.Controls.Add(txtBio);
+
+            ObjectId? currentHeroId = null;
+
+            Panel previewPanel = new Panel
+            {
+                Location = new Point(container.Width - 350, 60),
+                Size = new Size(300, container.Height - 120),
+                BackColor = Color.FromArgb(18, 18, 23),
+                BorderStyle = BorderStyle.Fixed3D,
+                AutoScroll = true
+            };
+            container.Controls.Add(previewPanel);
+
+            Panel scrollPanel = new Panel
+            {
+                Location = new Point(0, 0),
+                Size = new Size(previewPanel.Width - SystemInformation.VerticalScrollBarWidth, 600),
+                BackColor = Color.Transparent
+            };
+            previewPanel.Controls.Add(scrollPanel);
+
+            Label previewTitle = new Label
+            {
+                Text = "🏹 Hero Preview",
+                ForeColor = Color.Gold,
+                Font = new Font("Palatino Linotype", 16, FontStyle.Bold),
+                AutoSize = true,
+                Location = new Point(60, 15)
+            };
+            scrollPanel.Controls.Add(previewTitle);
+
+            PictureBox previewImage = new PictureBox
+            {
+                Name = "previewHeroImage",
+                Location = new Point(75, 60),
+                Size = new Size(150, 150),
+                BorderStyle = BorderStyle.FixedSingle,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.FromArgb(40, 40, 50)
+            };
+            scrollPanel.Controls.Add(previewImage);
+
+            Label previewName = new Label
+            {
+                Text = "Name: (empty)",
+                ForeColor = Color.FromArgb(220, 200, 160),
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                AutoSize = true,
+                Location = new Point(20, 230)
+            };
+            scrollPanel.Controls.Add(previewName);
+
+            Label previewRace = new Label
+            {
+                Text = "Race: (empty)",
+                ForeColor = Color.FromArgb(220, 200, 160),
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                AutoSize = true,
+                Location = new Point(20, 260)
+            };
+            scrollPanel.Controls.Add(previewRace);
+
+            Label previewAbilities = MakeLabel("Abilities:");
+            previewAbilities.Location = new Point(20, 290);
+            scrollPanel.Controls.Add(previewAbilities);
+
+            TextBox previewAbilitiesBox = new TextBox
+            {
+                ReadOnly = true,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical, 
+                Location = new Point(20, 310),
+                Width = 250,
+                Height = 90,
+                BackColor = Color.FromArgb(30, 30, 40),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            scrollPanel.Controls.Add(previewAbilitiesBox);
+
+            Label previewBio = MakeLabel("Biography:");
+            previewBio.Location = new Point(20, 410);
+            scrollPanel.Controls.Add(previewBio);
+
+            TextBox previewBioBox = new TextBox
+            {
+                ReadOnly = true,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+                Location = new Point(20, 430),
+                Width = 250,
+                Height = 120,
+                BackColor = Color.FromArgb(30, 30, 40),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            scrollPanel.Controls.Add(previewBioBox);
+
+            scrollPanel.Cursor = Cursors.Hand; 
+            scrollPanel.Click += async (sender, e) =>
+            {
+                if (currentHeroId == null) return; 
+
+                try
+                {
+                    using (var client = new MongoClient("mongodb://localhost:27017"))
+                    {
+                        var database = client.GetDatabase("Warcraft_LibraryDB");
+                        var myHeroesCollection = database.GetCollection<BsonDocument>("My_Heroes");
+
+                        var hero = myHeroesCollection.Find(Builders<BsonDocument>.Filter.Eq("_id", currentHeroId.Value))
+                                                     .FirstOrDefault();
+
+                        if (hero != null)
+                        {
+                            txtName.Text = hero.GetValue("name", "").AsString;
+                            cbRace.SelectedItem = hero.GetValue("race", "Human").AsString;
+                            txtAbilities.Text = hero.GetValue("abilities", "").AsString;
+                            txtBio.Text = hero.GetValue("biography", "").AsString;
+
+                            string imgBase64 = hero.GetValue("imageBase64", "").AsString;
+                            if (!string.IsNullOrEmpty(imgBase64))
+                            {
+                                byte[] imageBytes = Convert.FromBase64String(imgBase64);
+                                using (MemoryStream ms = new MemoryStream(imageBytes))
+                                {
+                                    picHero.Image?.Dispose();
+                                    picHero.Image = Image.FromStream(ms);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading hero for editing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            Button btnSave = new Button
+            {
+                Text = "Save Hero",
+                BackColor = Color.FromArgb(10, 100, 200),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 180,
+                Height = 45,
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Location = new Point(startX, container.Height - 80)
+            };
+            btnSave.FlatAppearance.BorderSize = 0;
+
+            btnSave.Click += async (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    MessageBox.Show("Hero Name is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string base64Image = null;
+                if (picHero.Image != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        picHero.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        base64Image = Convert.ToBase64String(ms.ToArray());
+                    }
+                }
+
+                var myHeroDoc = new BsonDocument
+                {
+                    { "name", txtName.Text },
+                    { "race", cbRace.SelectedItem?.ToString() ?? "Unknown" },
+                    { "abilities", txtAbilities.Text },
+                    { "biography", txtBio.Text },
+                    { "imageBase64", base64Image ?? "" },
+                    { "createdAt", DateTime.Now }
+                };
+
+                try
+                {
+                    using (var client = new MongoClient("mongodb://localhost:27017"))
+                    {
+                        var database = client.GetDatabase("Warcraft_LibraryDB");
+                        var myHeroesCollection = database.GetCollection<BsonDocument>("My_Heroes");
+
+                        await myHeroesCollection.InsertOneAsync(myHeroDoc);
+
+                        MessageBox.Show("Hero saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        currentHeroId = myHeroDoc["_id"].AsObjectId;
+                        previewName.Text = $"Name: {txtName.Text}";
+                        previewRace.Text = $"Race: {cbRace.SelectedItem?.ToString() ?? "Unknown"}";
+                        previewAbilitiesBox.Text = txtAbilities.Text;
+                        previewBioBox.Text = txtBio.Text;
+                        previewImage.Image = picHero.Image != null ? (Image)picHero.Image.Clone() : null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving hero: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            container.Controls.Add(btnSave);
+
+            Button btnEdit = new Button
+            {
+                Text = "Edit Hero",
+                BackColor = Color.FromArgb(200, 150, 0),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 180,
+                Height = 45,
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Location = new Point(startX + 190, container.Height - 80)
+            };
+            btnEdit.FlatAppearance.BorderSize = 0;
+
+            try
+            {
+                using (var client = new MongoClient("mongodb://localhost:27017"))
+                {
+                    var database = client.GetDatabase("Warcraft_LibraryDB");
+                    var myHeroesCollection = database.GetCollection<BsonDocument>("My_Heroes");
+
+                    var lastHero = myHeroesCollection.Find(new BsonDocument())
+                                                    .Sort(Builders<BsonDocument>.Sort.Descending("createdAt"))
+                                                    .Limit(1)
+                                                    .FirstOrDefault();
+
+                    if (lastHero != null)
+                    {
+                        currentHeroId = lastHero["_id"].AsObjectId;
+                        previewName.Text = $"Name: {lastHero.GetValue("name", "(empty)")}";
+                        previewRace.Text = $"Race: {lastHero.GetValue("race", "(empty)")}";
+                        previewAbilitiesBox.Text = lastHero.GetValue("abilities", "").AsString;
+                        previewBioBox.Text = lastHero.GetValue("biography", "").AsString;
+
+                        string imgBase64 = lastHero.GetValue("imageBase64", "").AsString;
+                        if (!string.IsNullOrEmpty(imgBase64))
+                        {
+                            try
+                            {
+                                byte[] imageBytes = Convert.FromBase64String(imgBase64);
+                                using (MemoryStream ms = new MemoryStream(imageBytes))
+                                {
+                                    previewImage.Image?.Dispose();
+                                    previewImage.Image = Image.FromStream(ms);
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                previewImage.Image = null;
+                            }
+                        }
+                        else
+                        {
+                            previewImage.Image = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading hero preview: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            btnEdit.Click += async (sender, e) =>
+            {
+                if (currentHeroId == null)
+                {
+                    MessageBox.Show("No hero to edit!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    MessageBox.Show("Hero Name is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var confirmResult = MessageBox.Show("Are you sure you want to update this hero?",
+                                                    "Confirm Edit",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Question);
+                if (confirmResult != DialogResult.Yes)
+                    return;
+
+                try
+                {
+                    using (var client = new MongoClient("mongodb://localhost:27017"))
+                    {
+                        var database = client.GetDatabase("Warcraft_LibraryDB");
+                        var myHeroesCollection = database.GetCollection<BsonDocument>("My_Heroes");
+
+                        string base64Image = null;
+                        if (picHero.Image != null)
+                        {
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                picHero.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                base64Image = Convert.ToBase64String(ms.ToArray());
+                            }
+                        }
+
+                        var filter = Builders<BsonDocument>.Filter.Eq("_id", currentHeroId.Value);
+                        var update = Builders<BsonDocument>.Update
+                            .Set("name", txtName.Text)
+                            .Set("race", cbRace.SelectedItem?.ToString() ?? "Unknown")
+                            .Set("abilities", txtAbilities.Text)
+                            .Set("biography", txtBio.Text)
+                            .Set("imageBase64", base64Image ?? "")
+                            .Set("updatedAt", DateTime.Now);
+
+                        var result = await myHeroesCollection.UpdateOneAsync(filter, update);
+
+                        if (result.ModifiedCount > 0)
+                        {
+                            MessageBox.Show("Hero updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            previewName.Text = $"Name: {txtName.Text}";
+                            previewRace.Text = $"Race: {cbRace.SelectedItem?.ToString() ?? "Unknown"}";
+                            previewAbilitiesBox.Text = txtAbilities.Text;
+                            previewBioBox.Text = txtBio.Text;
+                            previewImage.Image = picHero.Image != null ? (Image)picHero.Image.Clone() : null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No changes were made.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error editing hero: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            container.Controls.Add(btnEdit);
+
+            Button btnDelete = new Button
+            {
+                Text = "Delete Hero",
+                BackColor = Color.FromArgb(180, 0, 0),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 180,
+                Height = 45,
+                Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                Location = new Point(startX + 380, container.Height - 80) 
+            };
+            btnDelete.FlatAppearance.BorderSize = 0;
+         
+            btnDelete.Click += async (sender, e) =>
+            {
+                if (currentHeroId == null)
+                {
+                    MessageBox.Show("No hero to delete!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var confirmResult = MessageBox.Show("Are you sure you want to delete this hero?",
+                                                    "Confirm Delete",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning);
+                if (confirmResult != DialogResult.Yes)
+                    return;
+
+                try
+                {
+                    using (var client = new MongoClient("mongodb://localhost:27017"))
+                    {
+                        var database = client.GetDatabase("Warcraft_LibraryDB");
+                        var myHeroesCollection = database.GetCollection<BsonDocument>("My_Heroes");
+
+                        var filter = Builders<BsonDocument>.Filter.Eq("_id", currentHeroId.Value);
+                        var result = await myHeroesCollection.DeleteOneAsync(filter);
+
+                        if (result.DeletedCount > 0)
+                        {
+                            MessageBox.Show("Hero deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            currentHeroId = null;
+
+                            previewName.Text = "Name: (empty)";
+                            previewRace.Text = "Race: (empty)";
+                            previewAbilitiesBox.Text = "";
+                            previewBioBox.Text = "";
+                            previewImage.Image?.Dispose();
+                            previewImage.Image = null;
+
+                            txtName.Text = "";
+                            cbRace.SelectedIndex = -1;
+                            txtAbilities.Text = "";
+                            txtBio.Text = "";
+                            picHero.Image?.Dispose();
+                            picHero.Image = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Hero not found or already deleted.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting hero: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            container.Controls.Add(btnDelete);
         }
 
         private void LoadLibraries()
