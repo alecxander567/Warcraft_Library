@@ -79,7 +79,7 @@ namespace Warcraft_Library
             this.btnHeroes = MakeMenuButton("Heroes", startX, startY);
             this.btnItems = MakeMenuButton("Items", startX, startY + spacing);
             this.btnMyCharacter = MakeMenuButton("My Character", startX, startY + spacing * 2);
-            this.btnLibraries = MakeMenuButton("Libraries", startX, startY + spacing * 3);
+            this.btnLibraries = MakeMenuButton("Tavern", startX, startY + spacing * 3);
 
             activeButton = btnHeroes;
             activeButton.BackColor = Color.Gold;

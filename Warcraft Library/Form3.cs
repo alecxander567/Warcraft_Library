@@ -26,7 +26,7 @@ namespace Warcraft_Library
             btnHeroes.Click += async (s, e) => await LoadHeroesAsync();
             btnItems.Click += (s, e) => LoadItems();
             btnMyCharacter.Click += (s, e) => LoadMyCharacter();
-            btnLibraries.Click += (s, e) => LoadLibraries();
+            btnLibraries.Click += (s, e) => LoadTavern();
 
             LoadProfileImage();
 
@@ -79,6 +79,7 @@ namespace Warcraft_Library
         {
             mainContent.Controls.Clear();
             mainContent.AutoScroll = true;
+            mainContent.BackgroundImage = null;
 
             Button btnAddHero = new Button
             {
@@ -310,6 +311,7 @@ namespace Warcraft_Library
         private async void LoadItems()
         {
             mainContent.Controls.Clear();
+            mainContent.BackgroundImage = null;
 
             Button btnAddItem = new Button
             {
@@ -584,6 +586,7 @@ namespace Warcraft_Library
         private void LoadMyCharacter()
         {
             mainContent.Controls.Clear();
+            mainContent.BackgroundImage = null;
 
             Panel container = new Panel
             {
@@ -1165,11 +1168,532 @@ namespace Warcraft_Library
             container.Controls.Add(btnDelete);
         }
 
-        private void LoadLibraries()
+        private void LoadTavern()
         {
             mainContent.Controls.Clear();
-            Label lbl = new Label { Text = "Libraries view - Coming soon!", ForeColor = Color.White, Location = new Point(50, 50), AutoSize = true };
-            mainContent.Controls.Add(lbl);
+
+            mainContent.BackgroundImage = Image.FromFile("C:/Users/Lenovo/Pictures/morgan-howell-img-1760.jpg");
+            mainContent.BackgroundImageLayout = ImageLayout.Stretch;
+
+            Panel cardGamePanel = new Panel
+            {
+                Dock = DockStyle.Fill, 
+                BackColor = Color.FromArgb(120, 0, 0, 0),
+                Padding = new Padding(10)
+            };
+            mainContent.Controls.Add(cardGamePanel);
+
+            Panel addCardPanel = new Panel
+            {
+                Width = 300,
+                Dock = DockStyle.Left,
+                BackColor = Color.FromArgb(150, 20, 20, 20), 
+                Padding = new Padding(15)
+            };
+            mainContent.Controls.Add(addCardPanel);
+
+            Font titleFont = new Font("Georgia", 16, FontStyle.Bold);
+            Font labelFont = new Font("Georgia", 11, FontStyle.Bold);
+
+            Label lblTitle = new Label
+            {
+                Text = "Add New Card",
+                Font = titleFont,
+                ForeColor = Color.Gold,
+                BackColor = Color.Transparent,
+                AutoSize = true
+            };
+            addCardPanel.Controls.Add(lblTitle);
+
+            Label lblName = new Label
+            {
+                Text = "Card Name:",
+                Font = labelFont,
+                ForeColor = Color.Gold,
+                BackColor = Color.Transparent,
+                Top = 50,
+                Left = 10,
+                AutoSize = true
+            };
+            addCardPanel.Controls.Add(lblName);
+
+            TextBox txtName = new TextBox
+            {
+                Top = 75,
+                Left = 10,
+                Width = 250,
+                Font = new Font("Segoe UI", 10),
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            addCardPanel.Controls.Add(txtName);
+
+            Label lblImage = new Label
+            {
+                Text = "Card Image:",
+                Font = labelFont,
+                ForeColor = Color.Gold,
+                BackColor = Color.Transparent,
+                Top = 120,
+                Left = 10,
+                AutoSize = true
+            };
+            addCardPanel.Controls.Add(lblImage);
+
+            PictureBox picCard = new PictureBox
+            {
+                Top = 145,
+                Left = 10,
+                Width = 150,
+                Height = 150,
+                BorderStyle = BorderStyle.FixedSingle,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+            addCardPanel.Controls.Add(picCard);
+
+            Button btnUpload = new Button
+            {
+                Text = "Upload Image",
+                Top = 300,
+                Left = 10,
+                Width = 150,
+                Height = 35,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(70, 50, 20),  
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 10, FontStyle.Bold)
+            };
+            btnUpload.FlatAppearance.BorderColor = Color.FromArgb(120, 90, 40);
+            btnUpload.FlatAppearance.BorderSize = 2;
+            btnUpload.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 70, 30);
+            btnUpload.Click += (s, e) =>
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Image Files|*.png;*.jpg;*.jpeg";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    picCard.Image = Image.FromFile(ofd.FileName);
+                }
+            };
+            addCardPanel.Controls.Add(btnUpload);
+
+            Label lblPower = new Label
+            {
+                Text = "Power (Stars):",
+                Font = labelFont,
+                ForeColor = Color.Gold,
+                BackColor = Color.Transparent,
+                Top = 345,
+                Left = 10,
+                AutoSize = true
+            };
+            addCardPanel.Controls.Add(lblPower);
+
+            ComboBox cmbPower = new ComboBox
+            {
+                Top = 370,
+                Left = 10,
+                Width = 150,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Segoe UI", 10),
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White
+            };
+            cmbPower.Items.AddRange(new object[] { 1, 2, 3, 4, 5 });
+            cmbPower.SelectedIndex = 0;
+            addCardPanel.Controls.Add(cmbPower);
+
+            Button btnAdd = new Button
+            {
+                Text = "Add Card",
+                Top = 415,
+                Left = 10,
+                Width = 150,
+                Height = 35,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(40, 70, 20), 
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 10, FontStyle.Bold)
+            };
+            btnAdd.FlatAppearance.BorderColor = Color.FromArgb(80, 120, 40);
+            btnAdd.FlatAppearance.BorderSize = 2;
+            btnAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(60, 120, 30);
+            btnAdd.Click += async (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {
+                    MessageBox.Show("Please enter a card name.");
+                    return;
+                }
+
+                if (picCard.Image == null)
+                {
+                    MessageBox.Show("Please upload a card image.");
+                    return;
+                }
+
+                try
+                {
+                    byte[] imageBytes;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        picCard.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                        imageBytes = ms.ToArray();
+                    }
+
+                    var client = new MongoClient("mongodb://localhost:27017");
+                    var database = client.GetDatabase("Warcraft_LibraryDB");
+                    var cards = database.GetCollection<BsonDocument>("cards");
+
+                    var cardDoc = new BsonDocument
+                    {
+                        { "name", txtName.Text },
+                        { "power", Convert.ToInt32(cmbPower.SelectedItem) },
+                        { "image", imageBytes },
+                        { "createdAt", DateTime.Now }
+                    };
+
+                    await cards.InsertOneAsync(cardDoc);
+
+                    MessageBox.Show("Card successfully added to the Tavern!", "Success");
+
+                    txtName.Clear();
+                    cmbPower.SelectedIndex = 0;
+                    picCard.Image = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error adding card: " + ex.Message);
+                }
+            };
+
+            addCardPanel.Controls.Add(btnAdd);
+
+            Button btnRefresh = new Button
+            {
+                Text = "Refresh Cards",
+                Top = btnAdd.Top + btnAdd.Height + 10, 
+                Left = 10,
+                Width = 150,
+                Height = 35,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(70, 50, 20), 
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 10, FontStyle.Bold)
+            };
+            btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(120, 90, 40);
+            btnRefresh.FlatAppearance.BorderSize = 2;
+            btnRefresh.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 70, 30);
+            addCardPanel.Controls.Add(btnRefresh);
+
+            Panel playerCardsPanel = new Panel
+            {
+                Dock = DockStyle.Fill, 
+                AutoScroll = true,     
+                BackColor = Color.FromArgb(100, 0, 0, 0)
+            };
+            cardGamePanel.Controls.Add(playerCardsPanel);
+
+            FlowLayoutPanel buttonsPanel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 50,
+                FlowDirection = FlowDirection.LeftToRight,
+                Padding = new Padding(10)
+            };
+            cardGamePanel.Controls.Add(buttonsPanel);
+
+            Button btnShowCards = new Button
+            {
+                Text = "Show Cards",
+                Width = 120,
+                Height = 40,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(70, 50, 20),
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 10, FontStyle.Bold)
+            };
+            btnShowCards.FlatAppearance.BorderColor = Color.FromArgb(120, 90, 40);
+            btnShowCards.FlatAppearance.BorderSize = 2;
+            btnShowCards.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 70, 30);
+            buttonsPanel.Controls.Add(btnShowCards);
+
+            Button btnReset = new Button
+            {
+                Text = "Reset",
+                Width = 120,
+                Height = 40,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(70, 50, 20),
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 10, FontStyle.Bold)
+            };
+            btnReset.FlatAppearance.BorderColor = Color.FromArgb(120, 90, 40);
+            btnReset.FlatAppearance.BorderSize = 2;
+            btnReset.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 70, 30);
+            buttonsPanel.Controls.Add(btnReset);
+
+            var client2 = new MongoClient("mongodb://localhost:27017");
+            var database2 = client2.GetDatabase("Warcraft_LibraryDB");
+            var cardsCollection = database2.GetCollection<BsonDocument>("cards");
+            var allCards = cardsCollection.Find(new BsonDocument()).ToList();
+
+            List<BsonDocument> playerPicked = new List<BsonDocument>();
+            List<BsonDocument> botPicked = new List<BsonDocument>();
+
+            int cardsPerRow = 7;
+            int cardWidth = 100;
+            int cardHeight = 140;
+            int spacing = 15;
+
+            Dictionary<BsonDocument, PictureBox> cardBoxes = new Dictionary<BsonDocument, PictureBox>();
+
+            for (int i = 0; i < allCards.Count; i++)
+            {
+                PictureBox cardBack = new PictureBox
+                {
+                    Width = cardWidth,
+                    Height = cardHeight,
+                    Top = (i / cardsPerRow) * (cardHeight + spacing + 40), 
+                    Left = (i % cardsPerRow) * (cardWidth + spacing),
+                    Image = Image.FromFile("C:/Users/Lenovo/Pictures/card_back.png"),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Tag = allCards[i]
+                };
+
+                cardBack.Click += (s, e) =>
+                {
+                    if (playerPicked.Count >= 2) return;
+                    PictureBox pb = s as PictureBox;
+                    var card = pb.Tag as BsonDocument;
+                    if (!playerPicked.Contains(card))
+                    {
+                        playerPicked.Add(card);
+                        pb.BorderStyle = BorderStyle.Fixed3D;
+                    }
+                };
+
+                playerCardsPanel.Controls.Add(cardBack);
+                cardBoxes[allCards[i]] = cardBack;
+            }
+
+            btnShowCards.Click += (s, e) =>
+            {
+                if (playerPicked.Count < 2)
+                {
+                    MessageBox.Show("Pick 2 cards first!");
+                    return;
+                }
+
+                Random rnd = new Random();
+                botPicked = allCards.Except(playerPicked).OrderBy(x => rnd.Next()).Take(2).ToList();
+
+                void AddCardInfo(BsonDocument card)
+                {
+                    var pb = cardBoxes[card];
+
+                    byte[] imgBytes = card["image"].AsByteArray;
+                    using (MemoryStream ms = new MemoryStream(imgBytes))
+                    {
+                        pb.Image = Image.FromStream(ms);
+                    }
+
+                    Label cardNameLabel = new Label
+                    {
+                        Text = card["name"].AsString,
+                        ForeColor = Color.Gold,
+                        BackColor = Color.FromArgb(150, 0, 0, 0),
+                        Font = new Font("Georgia", 10, FontStyle.Bold),
+                        AutoSize = true,
+                        Top = pb.Top + pb.Height + 2,
+                        Left = pb.Left,
+                        MaximumSize = new Size(pb.Width, 0), 
+                        Tag = "name_label"
+                    };
+                    playerCardsPanel.Controls.Add(cardNameLabel);
+
+
+                    int power = card["power"].AsInt32;
+                    string stars = new string('★', power);
+
+                    Label starsLabel = new Label
+                    {
+                        Text = stars,
+                        ForeColor = Color.Gold,
+                        BackColor = Color.FromArgb(150, 0, 0, 0),
+                        Font = new Font("Georgia", 10, FontStyle.Bold),
+                        AutoSize = true,
+                        Top = cardNameLabel.Top + cardNameLabel.Height,
+                        Left = pb.Left,
+                        Tag = "star_label"
+                    };
+                    playerCardsPanel.Controls.Add(starsLabel);
+                }
+
+                foreach (var card in playerPicked)
+                    AddCardInfo(card);
+
+                foreach (var card in botPicked)
+                {
+                    AddCardInfo(card);
+                    var pb = cardBoxes[card];
+                    pb.BorderStyle = BorderStyle.FixedSingle; 
+                }
+
+                int playerPower = playerPicked.Sum(c => c["power"].AsInt32);
+                int botPower = botPicked.Sum(c => c["power"].AsInt32);
+
+                string winner = playerPower > botPower ? "You win!" :
+                                playerPower < botPower ? "Bot wins!" : "Draw!";
+
+                ShowBattleResult(playerPower, botPower);
+            };
+
+            btnReset.Click += (s, e) =>
+            {
+                playerPicked.Clear();
+                botPicked.Clear();
+
+                var labelsToRemove = playerCardsPanel.Controls.OfType<Label>()
+                    .Where(l => l.Tag != null && (l.Tag.ToString() == "star_label" || l.Tag.ToString() == "name_label"))
+                    .ToList();
+
+                foreach (var label in labelsToRemove)
+                {
+                    playerCardsPanel.Controls.Remove(label);
+                }
+
+                Random rnd = new Random();
+                var shuffledCards = allCards.OrderBy(x => rnd.Next()).ToList();
+
+                cardBoxes.Clear();
+
+                for (int i = 0; i < shuffledCards.Count; i++)
+                {
+                    var card = shuffledCards[i];
+                    var pb = playerCardsPanel.Controls.OfType<PictureBox>()
+                        .FirstOrDefault(p => p.Tag == card);
+
+                    if (pb != null)
+                    {
+                        pb.Top = (i / cardsPerRow) * (cardHeight + spacing + 40); 
+                        pb.Left = (i % cardsPerRow) * (cardWidth + spacing);
+
+                        pb.Image = Image.FromFile("C:/Users/Lenovo/Pictures/card_back.png");
+                        pb.BorderStyle = BorderStyle.FixedSingle;
+
+                        cardBoxes[card] = pb;
+                    }
+                }
+            };
+
+            btnRefresh.Click += (s, e) =>
+            {
+                playerCardsPanel.Controls.Clear();
+                cardBoxes.Clear();
+                playerPicked.Clear();
+                botPicked.Clear();
+
+                var allCardsRefreshed = cardsCollection.Find(new BsonDocument()).ToList();
+
+                cardWidth = 100;
+                cardHeight = 140;
+                spacing = 15;
+
+                for (int i = 0; i < allCardsRefreshed.Count; i++)
+                {
+                    PictureBox cardBack = new PictureBox
+                    {
+                        Width = cardWidth,
+                        Height = cardHeight,
+                        Top = (i / cardsPerRow) * (cardHeight + spacing + 40), 
+                        Left = (i % cardsPerRow) * (cardWidth + spacing),
+                        Image = Image.FromFile("C:/Users/Lenovo/Pictures/card_back.png"),
+                        SizeMode = PictureBoxSizeMode.StretchImage,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Tag = allCardsRefreshed[i]
+                    };
+
+                    cardBack.Click += (sender, args) =>
+                    {
+                        if (playerPicked.Count >= 2) return;
+                        PictureBox pb = sender as PictureBox;
+                        var card = pb.Tag as BsonDocument;
+                        if (!playerPicked.Contains(card))
+                        {
+                            playerPicked.Add(card);
+                            pb.BorderStyle = BorderStyle.Fixed3D;
+                        }
+                    };
+
+                    playerCardsPanel.Controls.Add(cardBack);
+                    cardBoxes[allCardsRefreshed[i]] = cardBack;
+                }
+            };
+        }
+
+        private void ShowBattleResult(int playerPower, int botPower)
+        {
+            string winner = playerPower > botPower ? "You win!" :
+                            playerPower < botPower ? "Bot wins!" : "Draw!";
+
+            Form battleResultForm = new Form
+            {
+                Width = 400,
+                Height = 250,
+                FormBorderStyle = FormBorderStyle.None,
+                StartPosition = FormStartPosition.CenterParent,
+                BackColor = Color.FromArgb(30, 30, 30),
+                Padding = new Padding(10)
+            };
+
+            Label title = new Label
+            {
+                Text = "⚔ Battle Result ⚔",
+                ForeColor = Color.Gold,
+                Font = new Font("Georgia", 16, FontStyle.Bold),
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 50
+            };
+            battleResultForm.Controls.Add(title);
+
+            Label details = new Label
+            {
+                Text = $"Your Total Power: {playerPower}\nBot Total Power: {botPower}\n\nWinner: {winner}",
+                ForeColor = Color.White,
+                Font = new Font("Georgia", 12, FontStyle.Bold),
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Width = battleResultForm.ClientSize.Width - 20,
+                Height = 120,
+                Top = title.Bottom + 10,
+                Left = 10
+            };
+            battleResultForm.Controls.Add(details);
+
+            Button btnOK = new Button
+            {
+                Text = "OK",
+                Width = 100,
+                Height = 35,
+                BackColor = Color.FromArgb(70, 50, 20),
+                ForeColor = Color.Gold,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Georgia", 10, FontStyle.Bold),
+                Top = details.Bottom + 10,
+                Left = (battleResultForm.ClientSize.Width - 100) / 2
+            };
+            btnOK.FlatAppearance.BorderColor = Color.FromArgb(120, 90, 40);
+            btnOK.FlatAppearance.BorderSize = 2;
+            btnOK.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 70, 30);
+            btnOK.Click += (s, e) => battleResultForm.Close();
+            battleResultForm.Controls.Add(btnOK);
+
+            battleResultForm.ShowDialog();
         }
     }
 }
