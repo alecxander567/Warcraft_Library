@@ -100,6 +100,99 @@ namespace Warcraft_Library
             };
             mainContent.Controls.Add(btnAddHero);
 
+            ComboBox cmbRaceFilter = new ComboBox
+            {
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Segoe UI", 10),
+                Size = new Size(120, 30),
+                Location = new Point(mainContent.Width - 590, 25),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            cmbRaceFilter.Items.Add("All");
+            cmbRaceFilter.Items.Add("Human");
+            cmbRaceFilter.Items.Add("Orc");
+            cmbRaceFilter.Items.Add("Elf");
+            cmbRaceFilter.Items.Add("Undead");
+            cmbRaceFilter.Items.Add("Night Elf");
+            cmbRaceFilter.Items.Add("Dwarf");
+            cmbRaceFilter.Items.Add("Troll");
+            cmbRaceFilter.Items.Add("Pandaren");
+            cmbRaceFilter.Items.Add("Demon");
+            cmbRaceFilter.Items.Add("Worgen");
+            cmbRaceFilter.Items.Add("Dranei");
+            cmbRaceFilter.SelectedIndex = 0; 
+
+            mainContent.Controls.Add(cmbRaceFilter);
+
+            TextBox txtSearch = new TextBox
+            {
+                Text = "Search hero...",
+                ForeColor = Color.Gray,
+                Font = new Font("Segoe UI", 10),
+                Size = new Size(180, 30),
+                Location = new Point(mainContent.Width - 450, 25), 
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            txtSearch.GotFocus += (s, e) =>
+            {
+                if (txtSearch.Text == "Search hero...")
+                {
+                    txtSearch.Text = "";
+                    txtSearch.ForeColor = Color.Black;
+                }
+            };
+
+            txtSearch.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSearch.Text))
+                {
+                    txtSearch.Text = "Search hero...";
+                    txtSearch.ForeColor = Color.Gray;
+                }
+            };
+
+            mainContent.Controls.Add(txtSearch);
+
+            Button btnSearch = new Button
+            {
+                Text = "Search",
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(70, 70, 90),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Size = new Size(80, 30),
+                Location = new Point(txtSearch.Right + 5, 25), 
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            btnSearch.Click += async (s, e) =>
+            {
+                string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                string selectedRace = cmbRaceFilter.SelectedItem.ToString();
+                await LoadHeroesAsyncFiltered(searchValue, selectedRace);
+            };
+
+            txtSearch.KeyDown += async (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                    string selectedRace = cmbRaceFilter.SelectedItem.ToString();
+                    await LoadHeroesAsyncFiltered(searchValue, selectedRace);
+                }
+            };
+
+            cmbRaceFilter.SelectedIndexChanged += async (s, e) =>
+            {
+                string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                string selectedRace = cmbRaceFilter.SelectedItem.ToString();
+                await LoadHeroesAsyncFiltered(searchValue, selectedRace);
+            };
+
+            mainContent.Controls.Add(btnSearch);
+
             try
             {
                 var client = new MongoClient("mongodb://localhost:27017");
@@ -128,15 +221,15 @@ namespace Warcraft_Library
                 int x = 20, y = 80;
                 int cardWidth = 250;
                 int cardHeight = 420;
-                int spacing = 20; 
+                int spacing = 20;
                 int leftPadding = 10;
                 int cardsPerRow = 4;
                 int counter = 0;
 
                 int totalCardWidth = cardsPerRow * cardWidth + (cardsPerRow - 1) * spacing;
                 int extraSpace = mainContent.Width - totalCardWidth;
-                int startX = leftPadding + extraSpace / 2; 
-                x = startX; 
+                int startX = leftPadding + extraSpace / 2;
+                x = startX;
 
                 foreach (var hero in heroes)
                 {
@@ -190,7 +283,7 @@ namespace Warcraft_Library
                         Multiline = true,
                         ReadOnly = true,
                         ScrollBars = ScrollBars.Vertical,
-                        Size = new Size(cardWidth - 20, 130), 
+                        Size = new Size(cardWidth - 20, 130),
                         Location = new Point(10, 230),
                         BorderStyle = BorderStyle.None
                     };
@@ -199,7 +292,7 @@ namespace Warcraft_Library
                     {
                         Text = "View",
                         Size = new Size(60, 30),
-                        Location = new Point(cardWidth - 210, 370), 
+                        Location = new Point(cardWidth - 210, 370),
                         BackColor = Color.FromArgb(100, 100, 200),
                         ForeColor = Color.White,
                         FlatStyle = FlatStyle.Flat
@@ -215,7 +308,7 @@ namespace Warcraft_Library
                     {
                         Text = "Edit",
                         Size = new Size(60, 30),
-                        Location = new Point(cardWidth - 140, 370), 
+                        Location = new Point(cardWidth - 140, 370),
                         BackColor = Color.FromArgb(0, 122, 204),
                         ForeColor = Color.White,
                         FlatStyle = FlatStyle.Flat
@@ -226,10 +319,8 @@ namespace Warcraft_Library
                         try
                         {
                             var heroId = hero.GetValue("_id").AsObjectId;
-
-                            Form4 editForm = new Form4(currentUsername, heroId); 
+                            Form4 editForm = new Form4(currentUsername, heroId);
                             editForm.ShowDialog();
-
                             await LoadHeroesAsync();
                         }
                         catch (Exception ex)
@@ -273,7 +364,6 @@ namespace Warcraft_Library
                                 await LoadHeroesAsync();
                             }
                         }
-
                         catch (Exception ex)
                         {
                             MessageBox.Show("Failed to delete hero: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -294,9 +384,9 @@ namespace Warcraft_Library
                     counter++;
                     x += cardWidth + spacing;
 
-                     if (counter % cardsPerRow == 0)
+                    if (counter % cardsPerRow == 0)
                     {
-                        x = startX; 
+                        x = startX;
                         y += cardHeight + spacing;
                     }
                 }
@@ -305,6 +395,330 @@ namespace Warcraft_Library
             {
                 MessageBox.Show("Failed to load heroes: " + ex.Message);
                 Debug.WriteLine($"Exception: {ex}");
+            }
+        }
+
+        private async Task LoadHeroesAsyncFiltered(string searchText, string selectedRace)
+        {
+            mainContent.Controls.Clear();
+            mainContent.AutoScroll = true;
+            mainContent.BackgroundImage = null;
+
+            Button btnAddHero = new Button
+            {
+                Text = "+ Add Hero",
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(0, 122, 204),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Size = new Size(140, 40),
+                Location = new Point(mainContent.Width - 160, 20),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+            btnAddHero.Click += async (s, e) =>
+            {
+                Form4 addForm = new Form4(currentUsername);
+                addForm.ShowDialog();
+                await LoadHeroesAsync();
+            };
+            mainContent.Controls.Add(btnAddHero);
+
+            ComboBox cmbRaceFilter = new ComboBox
+            {
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Segoe UI", 10),
+                Size = new Size(120, 30),
+                Location = new Point(mainContent.Width - 590, 25),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            cmbRaceFilter.Items.Add("All");
+            cmbRaceFilter.Items.Add("Human");
+            cmbRaceFilter.Items.Add("Orc");
+            cmbRaceFilter.Items.Add("Elf");
+            cmbRaceFilter.Items.Add("Undead");
+            cmbRaceFilter.Items.Add("Night Elf");
+            cmbRaceFilter.Items.Add("Dwarf");
+            cmbRaceFilter.Items.Add("Troll");
+            cmbRaceFilter.Items.Add("Pandaren");
+            cmbRaceFilter.Items.Add("Demon");
+            cmbRaceFilter.Items.Add("Worgen");
+            cmbRaceFilter.Items.Add("Dranei");
+
+            if (!string.IsNullOrWhiteSpace(selectedRace) && cmbRaceFilter.Items.Contains(selectedRace))
+                cmbRaceFilter.SelectedItem = selectedRace;
+            else
+                cmbRaceFilter.SelectedIndex = 0;
+
+            mainContent.Controls.Add(cmbRaceFilter);
+
+            TextBox txtSearch = new TextBox
+            {
+                Text = "Search hero...",
+                ForeColor = Color.Gray,
+                Font = new Font("Segoe UI", 10),
+                Size = new Size(180, 30), 
+                Location = new Point(mainContent.Width - 450, 25), 
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            txtSearch.GotFocus += (s, e) =>
+            {
+                if (txtSearch.Text == "Search hero...")
+                {
+                    txtSearch.Text = "";
+                    txtSearch.ForeColor = Color.Black;
+                }
+            };
+
+            txtSearch.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSearch.Text))
+                {
+                    txtSearch.Text = "Search hero...";
+                    txtSearch.ForeColor = Color.Gray;
+                }
+            };
+
+            mainContent.Controls.Add(txtSearch);
+
+            Button btnSearch = new Button
+            {
+                Text = "Search",
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(70, 70, 90),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Size = new Size(80, 30),
+                Location = new Point(txtSearch.Right + 5, 25), 
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            btnSearch.Click += async (s, e) =>
+            {
+                string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                string raceValue = cmbRaceFilter.SelectedItem.ToString();
+                await LoadHeroesAsyncFiltered(searchValue, raceValue);
+            };
+
+            txtSearch.KeyDown += async (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                    string raceValue = cmbRaceFilter.SelectedItem.ToString();
+                    await LoadHeroesAsyncFiltered(searchValue, raceValue);
+                }
+            };
+
+            cmbRaceFilter.SelectedIndexChanged += async (s, e) =>
+            {
+                string searchValue = txtSearch.Text == "Search hero..." ? "" : txtSearch.Text.Trim();
+                string raceValue = cmbRaceFilter.SelectedItem.ToString();
+                await LoadHeroesAsyncFiltered(searchValue, raceValue);
+            };
+
+            mainContent.Controls.Add(btnSearch);
+
+            var client = new MongoClient("mongodb://localhost:27017");
+            var db = client.GetDatabase("Warcraft_LibraryDB");
+            var collection = db.GetCollection<BsonDocument>("Heroes");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", currentUsername);
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+                filter &= Builders<BsonDocument>.Filter.Regex("Name", new BsonRegularExpression(searchText, "i"));
+
+            if (!string.IsNullOrWhiteSpace(selectedRace) && selectedRace != "All")
+                filter &= Builders<BsonDocument>.Filter.Eq("Race", selectedRace);
+
+            var heroes = await collection.Find(filter).ToListAsync();
+
+            if (heroes.Count == 0)
+            {
+                Label noHeroes = new Label
+                {
+                    Text = "No matching heroes found.",
+                    ForeColor = Color.Gray,
+                    Font = new Font("Segoe UI", 14),
+                    Location = new Point(mainContent.Width / 2 - 200, mainContent.Height / 2),
+                    AutoSize = true
+                };
+                mainContent.Controls.Add(noHeroes);
+                return;
+            }
+
+            int x = 20, y = 80;
+            int cardWidth = 250;
+            int cardHeight = 420;
+            int spacing = 20;
+            int leftPadding = 10;
+            int cardsPerRow = 4;
+            int counter = 0;
+
+            int totalCardWidth = cardsPerRow * cardWidth + (cardsPerRow - 1) * spacing;
+            int extraSpace = mainContent.Width - totalCardWidth;
+            int startX = leftPadding + extraSpace / 2;
+            x = startX;
+
+            foreach (var hero in heroes)
+            {
+                Panel card = new Panel
+                {
+                    Size = new Size(cardWidth, cardHeight),
+                    BackColor = Color.FromArgb(60, 60, 70),
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Location = new Point(x, y)
+                };
+
+                PictureBox pic = new PictureBox
+                {
+                    Size = new Size(200, 150),
+                    Location = new Point((cardWidth - 200) / 2, 10),
+                    SizeMode = PictureBoxSizeMode.Zoom
+                };
+
+                if (hero.Contains("Image") && hero["Image"].IsBsonBinaryData && hero["Image"].AsBsonBinaryData.Bytes.Length > 0)
+                {
+                    byte[] imgBytes = hero["Image"].AsByteArray;
+                    using (MemoryStream ms = new MemoryStream(imgBytes))
+                        pic.Image = Image.FromStream(ms);
+                }
+
+                Label lblName = new Label
+                {
+                    Text = hero.GetValue("Name", "").AsString,
+                    ForeColor = Color.Gold,
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Size = new Size(cardWidth, 25),
+                    Location = new Point(0, 170)
+                };
+
+                Label lblRace = new Label
+                {
+                    Text = hero.GetValue("Race", "").AsString,
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 11),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Size = new Size(cardWidth, 20),
+                    Location = new Point(0, 200)
+                };
+
+                TextBox txtBio = new TextBox
+                {
+                    Text = hero.GetValue("Biography", "").AsString,
+                    ForeColor = Color.White,
+                    BackColor = Color.FromArgb(60, 60, 70),
+                    Multiline = true,
+                    ReadOnly = true,
+                    ScrollBars = ScrollBars.Vertical,
+                    Size = new Size(cardWidth - 20, 130),
+                    Location = new Point(10, 230),
+                    BorderStyle = BorderStyle.None
+                };
+
+                Button btnView = new Button
+                {
+                    Text = "View",
+                    Size = new Size(60, 30),
+                    Location = new Point(cardWidth - 210, 370),
+                    BackColor = Color.FromArgb(100, 100, 200),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat
+                };
+
+                btnView.Click += (s, e) =>
+                {
+                    FormViewHero viewForm = new FormViewHero(hero);
+                    viewForm.ShowDialog();
+                };
+
+                Button btnEdit = new Button
+                {
+                    Text = "Edit",
+                    Size = new Size(60, 30),
+                    Location = new Point(cardWidth - 140, 370),
+                    BackColor = Color.FromArgb(0, 122, 204),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat
+                };
+
+                btnEdit.Click += async (s, e) =>
+                {
+                    try
+                    {
+                        var heroId = hero.GetValue("_id").AsObjectId;
+                        Form4 editForm = new Form4(currentUsername, heroId);
+                        editForm.ShowDialog();
+                        await LoadHeroesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to open hero for editing: " + ex.Message);
+                        Debug.WriteLine($"Exception: {ex}");
+                    }
+                };
+
+                Button btnDelete = new Button
+                {
+                    Text = "Delete",
+                    Size = new Size(60, 30),
+                    Location = new Point(cardWidth - 70, 370),
+                    BackColor = Color.FromArgb(200, 50, 50),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat
+                };
+
+                var currentHero = hero;
+
+                btnDelete.Click += async (s, e) =>
+                {
+                    try
+                    {
+                        var result = MessageBox.Show(
+                            $"Are you sure you want to delete {currentHero.GetValue("Name", "").AsString}?",
+                            "Confirm Delete",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (result == DialogResult.Yes)
+                        {
+                            var heroId = currentHero.GetValue("_id").AsObjectId;
+                            var filterDel = Builders<BsonDocument>.Filter.Eq("_id", heroId);
+                            await collection.DeleteOneAsync(filterDel);
+
+                            MessageBox.Show("Hero deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            await LoadHeroesAsync();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to delete hero: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Debug.WriteLine($"Exception: {ex}");
+                    }
+                };
+
+                card.Controls.Add(pic);
+                card.Controls.Add(lblName);
+                card.Controls.Add(lblRace);
+                card.Controls.Add(txtBio);
+                card.Controls.Add(btnView);
+                card.Controls.Add(btnEdit);
+                card.Controls.Add(btnDelete);
+
+                mainContent.Controls.Add(card);
+
+                counter++;
+                x += cardWidth + spacing;
+
+                if (counter % cardsPerRow == 0)
+                {
+                    x = startX;
+                    y += cardHeight + spacing;
+                }
             }
         }
 

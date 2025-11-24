@@ -172,7 +172,7 @@ namespace Warcraft_Library
                 BackColor = Color.FromArgb(60, 60, 70),
                 ForeColor = Color.White
             };
-            cbRace.Items.AddRange(new string[] { "Human", "Orc", "Night Elf", "Elf", "Troll", "Undead", "Demon", "Worgen", "Pandaren", "Draenei" });
+            cbRace.Items.AddRange(new string[] { "Human", "Orc", "Night Elf", "Elf", "Troll", "Undead", "Demon", "Worgen","Dwarf", "Pandaren", "Draenei" });
             mainPanel.Controls.Add(cbRace);
 
             btnSave = new Button()
