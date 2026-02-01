@@ -13,5 +13,5 @@ This pproject is all about warcraft heroes and items and for warcraft fans like 
 ![Logo](Images/heroes.png)
 ![Logo](Images/items.png)
 ![Logo](Images/hero.png)
-![Logo](Images/cardgame.png)
+![Logo](Images/card.png)
 
