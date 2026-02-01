@@ -9,5 +9,9 @@ This pproject is all about warcraft heroes and items and for warcraft fans like 
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
 ## User Interfaces
-![Logo](Images/Screenshot 2026-02-01 121539.png)
+![Logo](Images/login.png)
+![Logo](Images/heroes.png)
+![Logo](Images/items.png)
+![Logo](Images/hero.png)
+![Logo](Images/cardgame.png)
 
